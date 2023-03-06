@@ -42,7 +42,15 @@ pip install .
 # run
 
 ```
-make run
+make run-cifar10
+```
+
+same as `make run`
+
+or
+
+```
+make run-mnist
 ```
 
 
