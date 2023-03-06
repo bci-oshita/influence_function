@@ -4,6 +4,7 @@ import joblib
 import numpy
 import torch
 from tqdm import tqdm
+import pathlib
 
 from influ.influence import Influence, InfluenceCalculator, to_loader
 from influ_examples.components.models.model import Model
@@ -153,6 +154,7 @@ def _main(
     )
 
     # 結果を出力
+    pathlib.Path(result_file).parent.mkdir(parents=True, exist_ok=True)
     joblib.dump(results, result_file, compress=("gzip", 3))
 
     return
