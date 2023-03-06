@@ -3,8 +3,8 @@ from __future__ import annotations
 import torch
 import torch.optim as optim
 
-from ..components.datasets import DatasetType
-from ..components.trainer import SimpleTrainer
+from examples.components.datasets import DatasetType
+from examples.components.trainer import SimpleTrainer
 
 torch.manual_seed(12345)
 

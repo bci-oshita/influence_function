@@ -6,8 +6,8 @@ import torch
 from tqdm import tqdm
 
 from influence_function.influence import Influence, InfluenceCalculator, to_loader
-from ..components.models.model import Model
-from ..components.datasets import DatasetType
+from examples.components.models.model import Model
+from examples.components.datasets import DatasetType
 
 torch.manual_seed(12345)
 
