@@ -1,0 +1,25 @@
+{
+    "folders": [
+        {
+            "name": "lab",
+            "path": "."
+        },
+    ],
+    "settings": {
+        "python.sortImports.path": "isort",
+    },
+    "extensions": {
+        "recommendations": [
+            "ms-python.python",
+            "ms-python.vscode-pylance",
+            "ms-toolsai.jupyter",
+            "littlefoxteam.vscode-python-test-adapter",
+            "usernamehw.errorlens",
+            "njpwerner.autodocstring",
+            "oderwat.indent-rainbow",
+            "2gua.rainbow-brackets",
+            "donjayamanne.githistory",
+            "leodevbro.blockman",
+        ]
+    }
+}

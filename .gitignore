@@ -1,3 +1,18 @@
+# Custom settings
+data/
+model/
+models/
+result/
+results/
+image/
+images/
+log/
+logs/
+test/
+tests/
+?.sh
+
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
