@@ -12,7 +12,7 @@ cf. [Influence Functions for PyTorch](https://github.com/nimarb/pytorch_influenc
 | ---- | -------- | 
 | OS | Ubuntu 20.04.5 LTS on WSL2| 
 | Python | 3.10.10 on pyenv | 
-| Mem | 4.5 GiB available | 
+| Mem | 4.5 GiB available (MUST) | 
 
 
 # clone
