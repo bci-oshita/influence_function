@@ -17,18 +17,21 @@ cf. [Influence Functions for PyTorch](https://github.com/nimarb/pytorch_influenc
 
 # installation
 
+you can choose installation ways bellow `1.` or `2.`
 
-## clone this repo
+
+## 1. install from github
+
+```
+pip install git+https://github.com/bci-oshita/influence_function.git
+```
+
+
+## 2. git clone this repo and install
 
 ```
 git clone https://github.com/bci-oshita/influence_function.git
 cd influence_function
-```
-
-
-## pip install
-
-```
 pip install --upgrade pip
 pip install .
 ```
@@ -46,4 +49,6 @@ make run
 # notebook
 
 
-(c) Brans Consulting, inc.
+
+---
+(c) Brains Consulting, inc.

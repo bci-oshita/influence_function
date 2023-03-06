@@ -14,7 +14,12 @@ train-cifar10:
 	python -m influ_examples.executables.run_train --dataset-type=cifar10
 
 analyze-cifar10:
-	python -m influ_examples.executables.analyze_influence --dataset-type=cifar10 --result-file=result/analyzed_influence-cifar10.gz
+	python -m influ_examples.executables.analyze_influence \
+		--dataset-type=cifar10 \
+		--n-influence-samples=500 \
+		--r=100 \
+		--n-s-test-samples=128 \
+		--result-file=result/analyzed_influence-cifar10.gz
 
 
 # for MNIST
@@ -24,7 +29,12 @@ train-mnist:
 	python -m influ_examples.executables.run_train --dataset-type=mnist
 
 analyze-mnist:
-	python -m influ_examples.executables.analyze_influence --dataset-type=mnist --result-file=result/analyzed_influence-mnist.gz
+	python -m influ_examples.executables.analyze_influence \
+		--dataset-type=mnist \
+		--n-influence-samples=500 \
+		--r=100 \
+		--n-s-test-samples=128 \
+		--result-file=result/analyzed_influence-mnist.gz
 
 
 clean:
