@@ -48,6 +48,7 @@ make run
 
 # notebook
 
+after run (train/analyze) for mnist/cifar10, you can view the helpful/harmful images in the [notebook](./influ_examples/notebooks/influence_viewer.ipynb)
 
 
 ---
