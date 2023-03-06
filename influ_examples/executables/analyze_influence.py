@@ -5,9 +5,9 @@ import numpy
 import torch
 from tqdm import tqdm
 
-from influence_function.influence import Influence, InfluenceCalculator, to_loader
-from examples.components.models.model import Model
-from examples.components.datasets import DatasetType
+from influ.influence import Influence, InfluenceCalculator, to_loader
+from influ_examples.components.models.model import Model
+from influ_examples.components.datasets import DatasetType
 
 torch.manual_seed(12345)
 
@@ -61,13 +61,13 @@ def analyze(
     top_n: int = 10,
 ) -> numpy.ndarray:
     if dataset_type == DatasetType.mnist:
-        from ..components.datasets.mnist import g_class_names, load_data
-        from ..components.models.model_mnist import SimpleModelMnist
+        from influ_examples.components.datasets.mnist import g_class_names, load_data
+        from influ_examples.components.models.model_mnist import SimpleModelMnist
 
         SimpleModel = SimpleModelMnist
     elif dataset_type == DatasetType.cifar10:
-        from ..components.datasets.cifar10 import g_class_names, load_data
-        from ..components.models.model_cifar10 import SimpleModelCifar10
+        from influ_examples.components.datasets.cifar10 import g_class_names, load_data
+        from influ_examples.components.models.model_cifar10 import SimpleModelCifar10
 
         SimpleModel = SimpleModelCifar10
     else:

@@ -1,27 +1,27 @@
-from __future__ import annotations
-
 import torch
 import torch.optim as optim
 
-from examples.components.datasets import DatasetType
-from examples.components.trainer import SimpleTrainer
+from influ_examples.components.datasets import DatasetType
+from influ_examples.components.trainer import SimpleTrainer
 
 torch.manual_seed(12345)
 
 
 def _main(dataset_type: DatasetType = DatasetType.cifar10):
     if dataset_type == DatasetType.mnist:
-        from ..components.datasets.mnist import g_class_names, load_data
-        from ..components.models.model_mnist import SimpleModelMnist
+        from influ_examples.components.datasets.mnist import g_class_names, load_data
+        from influ_examples.components.models.model_mnist import SimpleModelMnist
 
         SimpleModel = SimpleModelMnist
     elif dataset_type == DatasetType.cifar10:
-        from ..components.datasets.cifar10 import g_class_names, load_data
-        from ..components.models.model_cifar10 import SimpleModelCifar10
+        from influ_examples.components.datasets.cifar10 import g_class_names, load_data
+        from influ_examples.components.models.model_cifar10 import SimpleModelCifar10
 
         SimpleModel = SimpleModelCifar10
     else:
         raise NotImplementedError(f"{dataset_type.value=}")
+
+    print(f"{g_class_names=}")
 
     # setup trainer
     model = SimpleModel(class_names=g_class_names)
