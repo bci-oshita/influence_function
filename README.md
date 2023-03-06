@@ -15,12 +15,17 @@ cf. [Influence Functions for PyTorch](https://github.com/nimarb/pytorch_influenc
 | Mem | 4.5 GiB available (MUST) | 
 
 
-# clone
+---
+
+# preparation as clone
 
 ```
 git clone https://github.com/bci-oshita/influence_function.git
 cd influence_function
 ```
+
+
+---
 
 # installation
 
