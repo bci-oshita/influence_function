@@ -29,7 +29,7 @@ cd influence_function
 
 # installation
 
-you can choose installation ways bellow `1.` or `2.`
+you can choose installation ways as bellow `1.` or `2.`
 
 
 ## 1. install from github, directly
