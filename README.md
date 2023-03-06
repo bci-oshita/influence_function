@@ -30,6 +30,7 @@ you can choose installation ways bellow `1.` or `2.`
 ## 1. install from github, directly
 
 ```
+pip install --upgrade pip
 pip install git+https://github.com/bci-oshita/influence_function.git
 ```
 
@@ -58,6 +59,45 @@ or
 make run-mnist
 ```
 
+---
+
+# partial execution
+
+## train
+
+```
+make train-cifar10
+```
+
+or
+
+```
+python -m influ_examples.executables.run_train --dataset-type=cifar10
+```
+
+and same as for mnist like `train-mnist`
+
+## analyze
+
+```
+make analyze-cifar10
+```
+
+or
+
+```
+python -m influ_examples.executables.analyze_influence \
+    --dataset-type=cifar10 \
+    --n-influence-samples=500 \
+    --r=100 \
+    --n-s-test-samples=128 \
+    --result-file=result/analyzed_influence-cifar10.gz
+```
+
+and same as for mnist like `analyze-mnist`
+
+
+---
 
 # notebook
 
