@@ -2,8 +2,9 @@ import logging
 import sys
 
 
-log_format = "%(asctime)s.%(msecs)03d %(name)s %(levelname)s %(filename)s:%(lineno)s %(message)s"
+log_format = "%(asctime)s.%(msecs)03d %(name)s %(levelname)s %(message)s"
 logging.basicConfig(stream=sys.stdout, format=log_format, level=logging.INFO)
+# log_format = "%(asctime)s.%(msecs)03d %(name)s %(levelname)s %(filename)s:%(lineno)s %(message)s"
 # logging.basicConfig(filename="train.log", filemode="w", format=log_format, level=logging.INFO)
 g_logger = logging.getLogger(__name__)
 
