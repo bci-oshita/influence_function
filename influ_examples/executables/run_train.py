@@ -3,7 +3,7 @@ import torch.optim as optim
 
 from influ_examples.components.datasets import DatasetType
 from influ_examples.components.trainer import SimpleTrainer
-from influ_examples.components.logger import log
+from influ_examples.components.simple_log import log
 
 torch.manual_seed(12345)
 

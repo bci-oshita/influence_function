@@ -6,7 +6,7 @@ from torch.utils.data import DataLoader
 from tqdm import tqdm
 from typing_extensions import Self
 from .models.model import ModelClassify
-from .logger import log
+from .simple_log import log
 
 
 class SimpleTrainer:
