@@ -3,6 +3,7 @@ import torch.optim as optim
 
 from influ_examples.components.datasets import DatasetType
 from influ_examples.components.trainer import SimpleTrainer
+from influ_examples.components.logger import log
 
 torch.manual_seed(12345)
 
@@ -21,7 +22,8 @@ def _main(dataset_type: DatasetType = DatasetType.cifar10):
     else:
         raise NotImplementedError(f"{dataset_type.value=}")
 
-    print(f"{g_class_names=}")
+    log(f"Start")
+    log(f"{SimpleModel=} / {g_class_names=}")
 
     # setup trainer
     model = SimpleModel(class_names=g_class_names)
@@ -32,9 +34,16 @@ def _main(dataset_type: DatasetType = DatasetType.cifar10):
 
     trainer = SimpleTrainer(model, optimizer, trainloader, testloader, device=device)
 
+    log(f"Processing ... do_train()")
     trainer.do_train(max_epoch=10)
+
+    log(f"Processing ... do_test()")
     trainer.do_test()
+
+    log(f"Processing ... save_model()")
     trainer.save_model(model_file=f"data/model-{dataset_type.value}.pth")
+
+    log(f"End")
 
 
 if __name__ == "__main__":

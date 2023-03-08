@@ -6,6 +6,7 @@ from torch.utils.data import DataLoader
 from tqdm import tqdm
 from typing_extensions import Self
 from .models.model import ModelClassify
+from .logger import log
 
 
 class SimpleTrainer:
@@ -37,27 +38,24 @@ class SimpleTrainer:
         return z[0].to(self.device), z[1].to(self.device)
 
     def do_train(self, max_epoch=20, keyword="baseline_processing") -> Self:
-        print(f"train.datasets: {len(self.trainloader.dataset.data)}")
-        print(f"test.datasets: {len(self.testloader.dataset.data)}")
+        log(f"train.datasets: {len(self.trainloader.dataset.data)}")
+        log(f"test.datasets: {len(self.testloader.dataset.data)}")
 
-        # loop over the dataset multiple times
         for epoch in tqdm(range(max_epoch), desc="epoch"):
             self.running_loss = 0.0
             self.losses: list = []
             for bch_idx, z in enumerate(tqdm(self.trainloader, desc="batch"), 0):
                 X, t = self._t(z)
                 step = self.trainloader.batch_size * epoch + bch_idx
-
-                # init grads
                 self.optimizer.zero_grad()
 
-                # train by step
+                # train by minibatch step
                 y = self.model(X)
                 loss = self.model.loss(y, t)
                 loss.backward()
                 self.optimizer.step()
 
-                # print statistics
+                # store loss
                 self.running_loss += loss.item()
                 self.losses.append(loss.item())
 
@@ -65,14 +63,15 @@ class SimpleTrainer:
                 if step % self.n_intervals == self.n_intervals - 1:
                     self._log_loss(epoch, bch_idx)
 
-            # test
+            # test by interval
             if epoch % self.n_validate_intervals == self.n_validate_intervals - 1:
                 self.do_test(keyword=f"training :{epoch=}/{step=}")
-        print("training done.")
+
+        log("training done.")
         return self
 
     def _log_loss(self, epoch: int, bch_idx: int) -> Self:
-        print(f"[{epoch+1}: {bch_idx+1}] / loss: {self.running_loss / self.n_intervals:.3f}")
+        log(f"[{epoch+1}: {bch_idx+1}] / loss: {self.running_loss / self.n_intervals:.3f}")
         self.running_loss = 0.0
         return self
 
@@ -83,7 +82,7 @@ class SimpleTrainer:
         class_totals = numpy.zeros(len(self.model.class_names), dtype=int)
         total_losses = []
 
-        print("=" * 120)
+        log("=" * 120)
         for z in tqdm(self.testloader, desc="testloader"):
             X, t = self._t(z)
 
@@ -102,13 +101,13 @@ class SimpleTrainer:
                 class_totals[ldx] += 1
                 class_corrects[ldx] += (p[n] == t[n]).sum().item()  # 一致してたら、+1
 
-        print(f"test loss: {numpy.array(total_losses).mean():.3f}")
-        print(f"accuracy[test][{keyword}]: {100 * n_corrects / n_totals: .3f} %")
+        log(f"test loss: {numpy.array(total_losses).mean():.3f}")
+        log(f"accuracy[test][{keyword}]: {100 * n_corrects / n_totals: .3f} %")
 
         # NOTE: refactored
         for ldx, lbl in enumerate(self.model.class_names):
-            print(f"{lbl} : {100 * class_corrects[ldx] / class_totals[ldx]: .3f} %")
-        print("=" * 120)
+            log(f"{lbl} : {100 * class_corrects[ldx] / class_totals[ldx]: .3f} %")
+        log("=" * 120)
         return self
 
     def get_latest_loss(self) -> float:
